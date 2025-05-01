@@ -12,3 +12,7 @@ export interface AppBindings {
 export type AppOpenAPI<S extends Schema = {}> = OpenAPIHono<AppBindings, S>;
 
 export type AppRouteHandler<R extends RouteConfig> = RouteHandler<R, AppBindings>;
+
+export type AppRouteObjectHandler<Router extends Record<string, RouteConfig>> = {
+  [Property in keyof Router]: AppRouteHandler<Router[Property]>;
+};
